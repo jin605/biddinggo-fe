@@ -39,10 +39,14 @@ pipeline {
                     docker-compose pull frontend
                     docker-compose up -d frontend nginx
                     sleep 5
-                    curl -f -I http://127.0.0.1:5173/
+
+                    docker run --rm \
+                    --network deploy_biddinggo-net \
+                    curlimages/curl:8.10.1 \
+                    -fsS -I http://nginx/
                     '''
                 }
-                
+
             }
         }
     }
