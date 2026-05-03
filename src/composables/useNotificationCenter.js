@@ -198,7 +198,7 @@ function closeSseStream() {
 async function openSseStream() {
     closeSseStream()
 
-    if (!API_BASE_URL || !authState.isAuthenticated) return
+    if (!authState.isAuthenticated) return
 
     state.connecting = true;
     
