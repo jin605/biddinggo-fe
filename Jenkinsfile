@@ -32,14 +32,16 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh '''
-                  cd /volume1/docker/biddinggo/deploy
-                  git pull
-                  docker-compose pull frontend
-                  docker-compose up -d frontend nginx
-                  sleep 5
-                  curl -f -I http://127.0.0.1:5173/
-                '''
+                sshagent(credentials: ['jenkins-github']) {
+                    sh '''
+                    cd /volume1/docker/biddinggo/deploy
+                    git pull
+                    docker-compose pull frontend
+                    docker-compose up -d frontend nginx
+                    sleep 5
+                    curl -f -I http://127.0.0.1:5173/
+                    '''
+                }
             }
         }
     }
