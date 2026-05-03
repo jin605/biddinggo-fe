@@ -46,7 +46,6 @@ pipeline {
                     -fsS -I http://nginx/
                     '''
                 }
-
             }
         }
     }
